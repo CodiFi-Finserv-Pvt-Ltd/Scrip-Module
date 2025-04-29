@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/CodiFi-Finserv-Pvt-Ltd/Scrip-Module.git'
+                checkout scm
             }
         }
 
