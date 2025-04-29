@@ -1,33 +1,43 @@
 pipeline {
-    agent any  // Tells Jenkins to run on any available agent
+    agent any  // This tells Jenkins to run on any available agent
 
     stages {
         stage('Checkout') {
             steps {
-                // Checkout the code from GitHub
+                echo 'Checking out the code from GitHub...'
                 git 'https://github.com/CodiFi-Finserv-Pvt-Ltd/Scrip-Module.git'
             }
         }
         
         stage('Build') {
             steps {
-                // Example of a build step, for instance a Maven build
-                sh 'mvn clean install'  // Replace with the actual build command for your project
+                echo 'Building the project...'
+                sh 'mvn clean install'  // Replace with your actual build command
             }
         }
 
         stage('Test') {
             steps {
-                // Example of a testing step
-                sh 'mvn test'  // Replace with the actual test command for your project
+                echo 'Running tests...'
+                sh 'mvn test'  // Replace with your actual test command
             }
         }
 
         stage('Deploy') {
             steps {
-                // Example of a deploy step
-                sh 'mvn deploy'  // Replace with the actual deploy command for your project
+                echo 'Deploying the project...'
+                sh 'mvn deploy'  // Replace with your actual deploy command
             }
+        }
+    }
+
+    post {
+        success {
+            echo 'Build completed successfully!'
+        }
+
+        failure {
+            echo 'Build failed. Please check the logs.'
         }
     }
 }
