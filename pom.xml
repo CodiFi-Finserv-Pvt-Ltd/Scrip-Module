@@ -17,7 +17,7 @@
 		<wiremock.version>2.33.2</wiremock.version>
 		<skipITs>true</skipITs>
 		<surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
-		<crypto.path>D:\ABML-MW\Midlleware_ABML\SCRIPS-MODULE\src\main\resources\lib\crypto-1.0.0.jar</crypto.path>
+		<crypto.path>D:/codifi-projects/SCRIP/ABML/Scrip-Module/src/main/resources/lib/crypto-1.0.0.jar</crypto.path>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
