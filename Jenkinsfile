@@ -1,29 +1,30 @@
 pipeline {
-    agent any
+  agent any
 
-    stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/CodiFi-Finserv-Pvt-Ltd/Scrip-Module.git'
-            }
-        }
+  triggers {
+    pollSCM('* * * * *')  // check every minute
+  }
 
-        stage('Build') {
-            steps {
-                echo 'Building the app...'
-            }
-        }
-
-        stage('Test') {
-            steps {
-                echo 'Running tests...'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                echo 'Deploying the app...'
-            }
-        }
+  stages {
+    stage('Checkout') {
+      steps {
+        // Checkout the 'dev' branch from the GitHub repository
+        git branch: 'dev', url: 'https://github.com/CodiFi-Finserv-Pvt-Ltd/Scrip-Module.git'
+      }
     }
+
+    stage('Build') {
+      steps {
+        // Build the project using Maven
+        sh './mvnw clean package -DskipTests'
+      }
+    }
+
+    stage('Deploy to UAT') {
+      steps {
+        // Deployment steps (e.g., copy the jar file to UAT server)
+        echo "Deployed to UAT"
+      }
+    }
+  }
 }
